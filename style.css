@@ -179,8 +179,33 @@ body {
 
 /* Mobil Uyumluluk */
 @media (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Mobilde dikey kaydırmaya izin ver */
+        padding: 20px 0;
+    }
+
+    .davetiye-konteyner {
+        flex-direction: column; /* Gelin - Kart - Damat alt alta dizilsin */
+    }
+
+    /* Figürler artık kartın yanında değil, üstünde/altında, küçük boyutta */
     .figur-konteyner {
-        display: none; /* Mobilde figürleri gizle (yer olmadığı için) */
+        display: flex !important;
+        position: static !important;
+        transform: none !important; /* JS'in yatay kaydırma efektini iptal et */
+        opacity: 1 !important; /* Mobilde direkt görünür olsunlar */
+        height: 130px;
+        margin: 0 auto 10px auto;
+    }
+
+    #gelin-konteyner {
+        width: 65px;
+        order: -1; /* Kartın üstünde görünsün */
+    }
+
+    #damat-konteyner {
+        width: 45px;
+        margin: 15px auto 0 auto;
     }
 
     .kart {
