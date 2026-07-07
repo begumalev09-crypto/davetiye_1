@@ -1,0 +1,208 @@
+/* Temel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f7f7; /* Hafif gri arka plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Playfair Display', serif; /* Temel font */
+    overflow: hidden; /* Figürler ekrandan taşmasın */
+}
+
+/* Konteyner */
+.davetiye-konteyner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+/* Figürler - Ortak Ayarlar */
+.figur-konteyner {
+    position: absolute;
+    height: 240px;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Figürler kartın alt hizasına yakın dursun */
+    opacity: 0; /* Başlangıçta gizli, JS ile görünür yapılacak */
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* gelin.png oranı ~0.49 (genişlik/yükseklik) */
+#gelin-konteyner {
+    width: 118px;
+    left: -130px; /* Kartın solunda */
+    transform: translate(-50px, -50%); /* Başlangıç: biraz daha solda + dikey ortalama */
+}
+
+/* damat.png oranı ~0.33 (genişlik/yükseklik) */
+#damat-konteyner {
+    width: 80px;
+    right: -95px; /* Kartın sağında */
+    transform: translate(50px, -50%); /* Başlangıç: biraz daha sağda + dikey ortalama */
+}
+
+/* Figürlerin içindeki resim */
+.figur-konteyner .figur-ic {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+#gelin-konteyner .figur-ic {
+    background-image: url('gelin.png');
+}
+
+#damat-konteyner .figur-ic {
+    background-image: url('damat.png');
+}
+
+/* Kart */
+.kart {
+    display: flex;
+    width: 600px; /* Kart genişliği */
+    height: 420px; /* Kart yüksekliği */
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden; /* İçerik taşmasın */
+    position: relative;
+    z-index: 2; /* Kart figürlerin önünde/ üstünde kalsın */
+}
+
+/* Siyah Bölüm (Güncellenmiş Sayı Rengi) */
+.siyah-bolum {
+    width: 50%;
+    background-color: #1a1a1a; /* Mat siyah */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kemer-konteyner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarih-kemer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scaleY(1.3); /* Dikey basıklık */
+}
+
+.sayi-belirgin { /* GÜNCELLENDİ */
+    font-size: 80px;
+    font-weight: bold;
+    color: #f7f7f7; /* Çok açık gri, belirgin sayı rengi */
+    opacity: 0.8; /* Hafif bir yumuşama */
+}
+
+/* Krem Bölüm (Sadeleştirilmiş Arka Plan) */
+.krem-bolum {
+    width: 50%;
+    background-color: #fdfcf5; /* Krem rengi */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Krem Bölüm Yazıları */
+.save-the-date {
+    font-family: 'Dancing Script', cursive; /* El yazısı */
+    font-size: 28px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.ust-yazi {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #8a8a8a;
+    margin-bottom: 20px;
+}
+
+.isimler {
+    margin-bottom: 20px;
+}
+
+.isim {
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+}
+
+.ve {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #333;
+}
+
+.detaylar p, .mekan p {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.tarih-detay, .saat-detay {
+    font-weight: bold;
+}
+
+.mekan-adi {
+    font-size: 13px;
+}
+
+.mekan-adres {
+    font-size: 11px;
+}
+
+.cocuk-uyari {
+    font-size: 10px;
+    font-style: italic;
+    color: #999;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 900px) {
+    .figur-konteyner {
+        display: none; /* Mobilde figürleri gizle (yer olmadığı için) */
+    }
+
+    .kart {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .siyah-bolum, .krem-bolum {
+        width: 100%;
+    }
+
+    .tarih-kemer {
+        font-size: 50px;
+        padding: 20px;
+    }
+
+    .krem-bolum {
+        padding: 20px;
+    }
+
+    .isim {
+        font-size: 28px;
+    }
+}
